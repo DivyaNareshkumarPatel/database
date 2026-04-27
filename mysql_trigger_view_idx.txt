@@ -1,0 +1,30 @@
+DELIMITER //
+
+CREATE TRIGGER update_items_trigger
+AFTER UPDATE
+ON items
+FOR EACH ROW
+BEGIN
+    INSERT INTO item_changes (item_id, change_type)
+    VALUES (NEW.id, 'UPDATE');
+END;
+//
+
+DELIMITER ;
+
+CREATE VIEW sales_summary AS
+SELECT 
+    prductLine, 
+    year, 
+    SUM(sum) AS total_sales
+FROM sales
+GROUP BY prductLine, year;
+
+
+SELECT * FROM sales_summary WHERE total_sales > 10;
+
+CREATE INDEX idx_product_line ON sales(prductLine);
+
+CREATE INDEX idx_item_price ON items(price);
+
+UPDATE items SET price = 55.00 WHERE id = 1;
