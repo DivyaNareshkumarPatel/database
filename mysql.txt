@@ -1,0 +1,104 @@
+MySQL
+
+SQL composed of three parts:
+Data definition languages: for defining the database and its objects
+Data Manipulation Language:  for updating and querying the data
+Data Control Language: allows to grant permission to users to access specific data in database
+
+SELECT:
+It allows you to select data from one or more tables.
+SELECT * FROM TABLE_NAME;
+
+ORDER BY:
+To sort the rows in the result set, you add the ORDER BY clause
+SELECT * FROM TABLE_NAME ORDER BY COLUMN_NAME DESC | ASC;
+
+FIELD:
+It returns the position of the value in the list of values;
+SELECT FIELD(‘A’, ‘A’, ‘B’, ‘C’);
+
+WHERE:
+It allows to specify search condition for the rod returned by a query.
+SELECT SELECT_LIST FROM TABLE_NAME WHERE SEARCH_CONDITION;
+
+DISTINCT:
+To remove duplicate rows you can use distinct keywords;
+SELECT DISTINCT SELECT_LIST FROM TABLE_NAME;
+
+JOINS
+It is used to combine rows from two or more tables based on a related column.
+
+INNER JOIN
+The inner join matches each rows in one table with every row in other tables and allows you to query rows that contain columns from both tables.
+SELECT SELECT_LIST FROM TABLE_NAME INNER_JOIN ON JOIN_CONDITION;
+
+LEFT JOIN
+If a row from table the left table t1 does not match with any row from the right table t2 the left join still combines columns of rows from both tables into a new row and includes the new row in result set. However it fills in the columns of he row from the right table with NULL values.
+SELECT SELECT_LIST FROM T1 LEFT JOIN T2  ON JOIN_CONDITION;
+
+RIGHT JOIN
+If a row from the right table does not have a matching row from the left table, the right join combines columns of rows from the right table with null values for all columns of the right table into a new row and include this row in the result set.
+SELECT SELECT_LIST FROM T1 RIGHT JOIN T2 ON JOIN_CONDITION;
+
+SELF JOIN
+It allows you to join a table to itself.
+
+CROSS JOIN
+It returns a cartesian product of rows from the joined tables.
+SELECT SELECT_LIST FROM T1 CROSS JOIN T2;
+
+GROUP BY
+It groups rows into summary rows based on column values or expressions.
+SELECT SELECT_LIST FROM T1 WHERE CONDITION GROUP BY LIST;
+
+HAVING
+It is used with group by. It allows you to apply condition to the group returned by the group by.
+SELECT SELECT_LIST FROM TABLE_NAME WHERE SEARCH_CONDITION GROUP BY EXPRESSION HAVING CONDITION;
+
+ROLLUP
+It is used with group by to generate hierarchical subtotals and a grand total;
+SELECT prductLine, SUM(sum) FROM sales GROUP BY prductLine, year WITH ROLLUP;
+
+UNION/ INTERSECT/ EXCEPT
+It allows you to combine two or more result sets of queries into a single result set.
+SELECT COLUMN_LIST UNION [DISTINCT | ALL] SELECT COLUMN_LIST UNION [DISTINCT | ALL];
+
+COMMON TABLE EXPRESSION
+It is a named temporary result set that exists solely within the execution scope of a single SQL statement 
+
+AUTO INCREMENT
+CREATE TABLE TABLE_NAME(
+		id INT AUTO_INCREMENT PRIMARY KEY,
+		…..,
+		….,
+)
+
+ALTER TABLE
+ALTER TABLE VHICLES
+DROP COLUMN CONDITION;
+
+TEMPORARY TABLE
+It is a special type of table that allows you to share a temporary result set.
+CREATE TEMPORARY TABLE TABLE_NAME(COLUMN1 DATATYPE CONSTRAINTS, ….. , ……);
+
+PRIMARY KEY
+It is a column or a set of columns that uniquely identifies each row in table. It must contain unique values.
+
+Foreign key
+It is a column or a group of column in a table that links to a column or group of columns in another table.
+
+UPDATE TABLE
+UPDATE TABLE SET …… WHERE CONDITION;
+
+TRIGGERS
+It is stored program invoked automatically in response to an event.
+
+INDEXING
+It is a technique used to improve the speed of data retrieval operations on a database table by creating a separate data structure that stores column values along with pointers to the actual rows.
+CREATE TABLE TABLE_NAME(C1 INT PRIMARY KEY, C2 INT NOT NULL, C3 INT NOT NULL, C4 VARCHAR(10), INDEX(C2, C3));
+CREATE INDEX INDEX_NAME ON TABLE_NAME(COLUMN_LIST);
+DROP INDEX INDEX_NAME ON TABLE_NAME [ALGORITHM_OPTION | LOCK_OPTION];
+SHOW INDEX IN TABLE_NAME FROM DB_NAME;
+
+INDEX CARDINALITY
+It refers to the uniqueness of values stored in a specific column within an index.
