@@ -80,7 +80,7 @@ DO $$
 DECLARE
     start_date DATE := '2026-01-01';
     end_date DATE := '2027-12-01'; 
-    
+
     current_date_val DATE := start_date;
     next_date_val DATE;
     partition_name_rides TEXT;
@@ -88,7 +88,7 @@ DECLARE
 BEGIN
     WHILE current_date_val <= end_date LOOP
         next_date_val := current_date_val + INTERVAL '1 month';
-
+        
         partition_name_rides := 'rides_y' || to_char(current_date_val, 'YYYY') || 'm' || to_char(current_date_val, 'MM');
         partition_name_tracking := 'ride_tracking_y' || to_char(current_date_val, 'YYYY') || 'm' || to_char(current_date_val, 'MM');
 
@@ -101,6 +101,7 @@ BEGIN
             'CREATE TABLE IF NOT EXISTS %I PARTITION OF ride_tracking FOR VALUES FROM (%L) TO (%L);',
             partition_name_tracking, current_date_val, next_date_val
         );
+
         current_date_val := next_date_val;
     END LOOP;
     
