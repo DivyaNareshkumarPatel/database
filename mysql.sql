@@ -1,3 +1,5 @@
+show databases;
+
 create database company;
 show databases;
 drop database company;
